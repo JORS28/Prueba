@@ -1,5 +1,6 @@
 class App {
-  constructor(descargas, puntuacion, peso) {
+  constructor(id, descargas, puntuacion, peso) {
+    this.id = id;
     this.descargas = descargas;
     this.puntuacion = puntuacion;
     this.peso = peso;
@@ -33,39 +34,43 @@ class App {
   appInfo() {
     return `
       </br><b>Aplicaciones</b></br>
+      ID: <b>${this.id}</b><br>
       Descargas: <b>${this.descargas}</b><br>
       Puntuacion: <b>${this.puntuacion}</b><br>
       Peso: <b>${this.peso}</b><br>
-      <button id="eliminar">Eliminar</button><button>Editar</button><br>
+      <button id="eliminar" ondblclick="P2()" >Eliminar</button><button>Editar</button><br>
       `;
   }
 }
 
-let P = [];
-function addNewAdd(descarga, puntuacion, peso) {
-  P.push(new App(descarga, puntuacion, peso));
+let Aplicaciones = [];
+
+function addNewAdd(id, descarga, puntuacion, peso) {
+  Aplicaciones.push(new App(id, descarga, puntuacion, peso));
 }
 
 function P2() {
-  alert("hola");
+  console.log("hola");
 }
+
+function Eliminar() {}
 
 let buttonAgregar = document.getElementById("agregar");
 
 // button.firstChild.data = "pedro";
 
 buttonAgregar.addEventListener("click", function () {
-  let inpDescargar = document.getElementById("descargar").value;
+  let inpId = document.getElementById("id").value;
+  let inpDescargar = document.getElementById("descargas").value;
   let inpPuntuacion = document.getElementById("puntuacion").value;
   let inpPeso = document.getElementById("peso").value;
 
-  addNewAdd(inpDescargar, inpPuntuacion, inpPeso);
+  addNewAdd(inpId, inpDescargar, inpPuntuacion, inpPeso);
 
   let contend = document.getElementById("contend");
 
   contend.innerHTML = "";
-
-  P.forEach(function (app) {
+  Aplicaciones.forEach(function (app) {
     contend.innerHTML += app.appInfo();
   });
 });
