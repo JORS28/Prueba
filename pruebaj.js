@@ -55,6 +55,10 @@ function eliminar(id) {
   Aplicaciones = Aplicaciones.filter(function (obj) {
     return obj.id != id;
   });
+  contend.innerHTML = "";
+  Aplicaciones.forEach(function (app) {
+    contend.innerHTML += app.appInfo();
+  });
 }
 // loacl store prueba 1
 function localStorageList(split) {
