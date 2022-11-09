@@ -4,8 +4,8 @@ class App {
     this.descargas = descargas;
     this.puntuacion = puntuacion;
     this.peso = peso;
-    this.iniciada = false;
-    this.instalada = false;
+    // this.iniciada = false;
+    // this.instalada = false;
   }
   abrir() {
     if (this.iniciada == false && this.instalada == true) {
@@ -38,28 +38,33 @@ class App {
       Descargas: <b>${this.descargas}</b><br>
       Puntuacion: <b>${this.puntuacion}</b><br>
       Peso: <b>${this.peso}</b><br>
-      <button id="eliminar" ondblclick="P2()" >Eliminar</button><button>Editar</button><br>
+      <button id="eliminar" ondblclick="eliminar(${this.id})" >Eliminar</button><button id="editar" ondblclick="editar(${this.id})">Editar</button><br>
       `;
   }
 }
-
+let contend = document.getElementById("contend");
 let Aplicaciones = [];
 
 function addNewAdd(id, descarga, puntuacion, peso) {
   Aplicaciones.push(new App(id, descarga, puntuacion, peso));
 }
 
-function P2() {
-  console.log("hola");
+function editar(id) {}
+
+function eliminar(id) {
+  Aplicaciones = Aplicaciones.filter(function (obj) {
+    return obj.id != id;
+  });
+}
+// loacl store prueba 1
+function localStorageList(split) {
+  localStorage.setItem("localStorageList", JSON.stringify(split));
 }
 
-function Eliminar() {}
-
-let buttonAgregar = document.getElementById("agregar");
-
-// button.firstChild.data = "pedro";
-
-buttonAgregar.addEventListener("click", function () {
+function P2() {
+  alert("hola");
+}
+function AgregarD() {
   let inpId = document.getElementById("id").value;
   let inpDescargar = document.getElementById("descargas").value;
   let inpPuntuacion = document.getElementById("puntuacion").value;
@@ -67,10 +72,29 @@ buttonAgregar.addEventListener("click", function () {
 
   addNewAdd(inpId, inpDescargar, inpPuntuacion, inpPeso);
 
-  let contend = document.getElementById("contend");
+  // prueba 1
+  localStorageList(Aplicaciones);
 
   contend.innerHTML = "";
   Aplicaciones.forEach(function (app) {
     contend.innerHTML += app.appInfo();
   });
-});
+}
+
+let buttonAgregar = document.getElementById("agregar");
+
+// button.firstChild.data = "pedro";
+
+buttonAgregar.addEventListener("click", AgregarD);
+
+function P3() {
+  mostrar = localStorage.getItem("Aplicaciones");
+  console.log(mostrar);
+  Aplicaciones = JSON.parse(mostrar) ?? [];
+
+  contend.innerHTML = "";
+  if (Aplicacicones != null)
+    Aplicaciones.forEach(function (app) {
+      contend.innerHTML += app.appInfo();
+    });
+}

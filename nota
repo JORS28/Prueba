@@ -1,0 +1,31 @@
+let pruebaArray = [];
+
+// for (var i = 1; i < 10; i++) {
+//   pruebaArray.push(i);
+// }
+
+// document.write(pruebaArray[3]);
+
+let frutas = ["Manzana", "Pera", "limon", "lima", "mango", "fresa", "jose"];
+
+// for (var i = 0; i < frutas.length; i++) {
+//   console.log(frutas[i]);
+// }
+
+// pruebas = "Hola";
+
+// console.log(frutas.length);
+
+// let i = 0;
+// while (i < frutas.length) {
+//   console.log(frutas[i]);
+//   i++;
+// }
+
+// for (let fruta of frutas) {
+//   console.log(fruta);
+// }
+
+frutas.map(function (fruta) {
+  console.log(fruta);
+});
